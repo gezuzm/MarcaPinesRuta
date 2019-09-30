@@ -41,9 +41,6 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
         {
             manejador.startUpdatingLocation()
             mapa.showsUserLocation = true
-            
-//            locInicial = CLLocation(latitude: (manager.location?.coordinate.latitude)!,longitude: (manager.location?.coordinate.longitude)!)
-      //      centerMapOnLocation(location: manager.location!)
         }
         else{
             manejador.stopUpdatingLocation()
@@ -58,65 +55,30 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
     
      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-       // coordenadas.append(CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!))
-        
         if contador == false{
       locInicial = CLLocation(latitude: (manager.location?.coordinate.latitude)!,longitude: (manager.location?.coordinate.longitude)!)
             contador = true
         }
-      //  var contador = 0, distancia:  Double = 0.0
-      //  let locInicial = CLLocation(latitude: 0,longitude: 0)
+   
        var tmpDistancia:  Double = 0.0
         
         let locActual = CLLocation(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
         
         tmpDistancia = Double(locActual.distance(from: locInicial ))
        
-        // tmpDistancia = (tmpDistancia * 1000).rounded() / 1000
-                       distancia += tmpDistancia
+        distancia += tmpDistancia
      
-            let pin = MKPointAnnotation()
-                     // pin.title = "\(manager.location!.coordinate.latitude)" + ", " + "\(manager.location!.coordinate.longitude)"
-        pin.title = String(format: "%.1f", distancia)
-                      pin.subtitle = "\(distancia)"
+        let pin = MKPointAnnotation()
+        
+        pin.title = "(" + "\((manager.location?.coordinate.latitude)!)" + ", " + "\( (manager.location?.coordinate.longitude)!)"
+        pin.subtitle = "distancia: " + String(format: "%.1f", distancia)            //"\(distancia)"
         pin.coordinate = CLLocationCoordinate2DMake((manager.location?.coordinate.latitude)!, (manager.location?.coordinate.longitude)!)
         
-           //  pins2 += pin
-        
-   /*     let pins = coordenadas.map{ (coordinate) -> MKPointAnnotation in
-        
-            if contador == 0{
-                distancia = 0
-                locInicial = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            }
-            else{
-                let locActual = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
-                
-                tmpDistancia = Double(locActual.distance(from: locInicial ))
-                tmpDistancia = (tmpDistancia * 100).rounded() / 100
-                distancia += tmpDistancia
-            }
-            
-            let pin = MKPointAnnotation()
-           // pin.title = "\(manager.location!.coordinate.latitude)" + ", " + "\(manager.location!.coordinate.longitude)"
-            pin.title = "\(distancia)"
-            pin.subtitle = "\(distancia)"
-            pin.coordinate = coordinate
-            
-            contador += 1
-            return pin
-        }*/
-       
          centerMapOnLocation(location: manager.location!)
         
-        //mapa.addAnnotations(pins)
        mapa.addAnnotation(pin)
         
         locInicial = locActual
-        
-       /* let span = MKCoordinateSpan(latitudeDelta: 0.500, longitudeDelta: 0.500)
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!), span: span)
-        mapa.setRegion(region, animated: true)*/
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -130,7 +92,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
         self.present(alerta, animated: true, completion: nil)
     }
     
-   let regionRadius: CLLocationDistance = 200
+   let regionRadius: CLLocationDistance = 300
     
    func centerMapOnLocation(location: CLLocation)
    {
