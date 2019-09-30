@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MarcaPinesRuta" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="s4K-Pf-rog">
+                                <rect key="frame" x="0.0" y="0.0" width="449" height="736"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7n3-1D-glf" id="JBN-L2-Txj"/>
+                                </connections>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="center" contentHorizontalAlignment="fill" contentVerticalAlignment="bottom" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7n3-1D-glf">
+                                <rect key="frame" x="20" y="701" width="374" height="26"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="uQc-q4-ugc"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="yI9-5j-j9A"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Normal"/>
+                                    <segment title="Satelite"/>
+                                    <segment title="Hybrido"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="indexChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="oCO-Wc-9e5"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7n3-1D-glf" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5O7-c3-eEa"/>
+                            <constraint firstItem="s4K-Pf-rog" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FlV-oB-PlF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="s4K-Pf-rog" secondAttribute="trailing" constant="-55" id="GM8-6s-V3I"/>
+                            <constraint firstItem="s4K-Pf-rog" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="OeF-vG-xNp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7n3-1D-glf" secondAttribute="bottom" constant="10" id="TGu-7t-PRB"/>
+                            <constraint firstItem="7n3-1D-glf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WPK-p1-T7f"/>
+                            <constraint firstItem="s4K-Pf-rog" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xPR-U0-U11"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapa" destination="s4K-Pf-rog" id="CCF-r2-HBC"/>
+                        <outlet property="selectorTipoMapa" destination="7n3-1D-glf" id="gTB-JI-Miq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.40000000000001" y="112.89355322338831"/>
+        </scene>
+    </scenes>
+</document>
